@@ -687,8 +687,9 @@ function CandidateCardMsg({ result, appData }) {
   const [downloading, setDownloading] = useState(false)
   const v = appData?.voter || result?.voter || {}
   const lb = appData?.localBody || result?.local_body || {}
-  const rawName = v.name || result?.name || 'Verified Applicant'
+  const rawName = v.name || result?.name || ''
   const cleanName = String(rawName).replace(/[-_,\s]+$/, '').trim()
+  const displayName = cleanName && cleanName.toLowerCase() !== 'verified applicant' ? cleanName : t('Candidate Nomination')
 
   const handleDownload = async () => {
     if (!cardRef.current) return
@@ -712,7 +713,7 @@ function CandidateCardMsg({ result, appData }) {
     : [lb.ruralUnion, lb.ruralPanchayat, lb.ruralWard && `Ward ${lb.ruralWard}`].filter(Boolean).join(' · ')
 
   const positionsStr = Array.isArray(appData?.positionPrefs) ? appData.positionPrefs.filter(Boolean).join(' / ') : ''
-  const primaryPos = Array.isArray(appData?.positionPrefs) && appData.positionPrefs[0] ? appData.positionPrefs[0] : (positionsStr || t('Candidate Applicant'))
+  const primaryPos = Array.isArray(appData?.positionPrefs) && appData.positionPrefs[0] ? appData.positionPrefs[0] : (positionsStr || '')
   const appId = result?.application_id || 'BJP-2026'
   const membershipId = appData?.membershipId || result?.membership_id || ''
 
@@ -732,53 +733,48 @@ function CandidateCardMsg({ result, appData }) {
 
         {/* Content Section positioned over the bright center of the template */}
         <div className="template-content-area">
-          <div className="template-verified-badge">
-            <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
-          </div>
+          <div className="template-candidate-name">{displayName}</div>
 
-          <div className="template-candidate-name">{cleanName}</div>
+          {primaryPos && (
+            <div className="template-position-pill">
+              <i className="bi bi-award-fill" /> {primaryPos}
+            </div>
+          )}
 
-          <div className="template-position-pill">
-            <i className="bi bi-award-fill" /> {primaryPos}
-          </div>
-
-          <div className="template-id-row">
-            <span className="template-id-tag">APP ID: <strong>{appId}</strong></span>
+          <div className="template-app-badge">
+            <span className="app-id-label">APP ID:</span>
+            <span className="app-id-code">{appId}</span>
+            <span className="app-verified-tag"><i className="bi bi-patch-check-fill" /> {t('Verified')}</span>
           </div>
 
           <div className="template-info-box">
             <div className="template-info-item">
-              <span className="info-lbl"><i className="bi bi-person-vcard" /> {t('EPIC No')}:</span>
+              <span className="info-lbl"><i className="bi bi-person-vcard" /> {t('EPIC No')}</span>
               <span className="info-val">{v.epic_no || appData?.epic || '—'}</span>
             </div>
 
             <div className="template-info-item">
-              <span className="info-lbl"><i className="bi bi-geo-alt" /> {t('Assembly')}:</span>
+              <span className="info-lbl"><i className="bi bi-geo-alt" /> {t('Assembly / Dist')}</span>
               <span className="info-val">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
             </div>
 
             {locationStr && (
               <div className="template-info-item">
-                <span className="info-lbl"><i className="bi bi-building" /> {t('Local Body')}:</span>
+                <span className="info-lbl"><i className="bi bi-building" /> {t('Local Body')}</span>
                 <span className="info-val">{locationStr}</span>
               </div>
             )}
 
             {membershipId && (
               <div className="template-info-item">
-                <span className="info-lbl"><i className="bi bi-card-heading" /> {t('Membership')}:</span>
+                <span className="info-lbl"><i className="bi bi-card-heading" /> {t('Membership No')}</span>
                 <span className="info-val highlight">{membershipId}</span>
               </div>
             )}
           </div>
 
-          <div className="template-card-footer">
-            <div className="template-security-text">
-              <i className="bi bi-shield-fill-check" /> SECURED DIGITAL NOMINATION · 2026
-            </div>
-            <div className="template-timestamp">
-              {fmtDateTime(result?.submitted_at)}
-            </div>
+          <div className="template-security-badge">
+            <i className="bi bi-shield-lock-fill" /> SECURED DIGITAL RECORD · BJP TN 2026
           </div>
         </div>
       </div>
