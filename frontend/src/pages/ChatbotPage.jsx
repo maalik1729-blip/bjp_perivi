@@ -557,8 +557,10 @@ function LongTextMsg({ active, title, icon, prompt, initial, onSubmit, disabled,
   const ready = isOptional ? !over : (words > 0 && !over)
 
   return (
-    <div style={cardBox}>
-      <div style={cardTitle}><i className={`bi bi-${icon}`} /> {t(title)}</div>
+    <div className="interactive-card">
+      <div className="interactive-card-title">
+        <i className={`bi bi-${icon}`} /> {t(title)}{isOptional && ` (${t('Optional')})`}
+      </div>
       <div style={{ fontSize: 12, color: 'var(--color-ash)' }}>{t(prompt)}</div>
       {sampleChips && (
         <div className="sample-chip-container">
@@ -576,10 +578,33 @@ function LongTextMsg({ active, title, icon, prompt, initial, onSubmit, disabled,
         {words} / {MAX_WORDS} {t('words')}
       </div>
       {active && (
-        <button style={primaryBtn(ready && !disabled)} disabled={!ready || disabled}
-          onClick={() => ready && onSubmit(text.trim())}>
-          {t('Continue')} <i className="bi bi-arrow-right" />
-        </button>
+        isOptional ? (
+          <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+            <button
+              type="button"
+              className="interactive-btn"
+              style={{ background: 'var(--color-graphite)', color: 'var(--color-chalk)', border: '1px solid var(--color-graphite)', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+              onClick={() => onSubmit('')}
+              disabled={disabled}
+            >
+              {t('Skip')}
+            </button>
+            <button
+              type="button"
+              className="interactive-btn"
+              style={{ background: 'var(--color-signal-mint)', color: '#fff', border: 'none', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+              onClick={() => onSubmit(text.trim())}
+              disabled={!ready || disabled}
+            >
+              {t('Continue')} <i className="bi bi-arrow-right" />
+            </button>
+          </div>
+        ) : (
+          <button style={primaryBtn(ready && !disabled)} disabled={!ready || disabled}
+            onClick={() => ready && onSubmit(text.trim())}>
+            {t('Continue')} <i className="bi bi-arrow-right" />
+          </button>
+        )
       )}
     </div>
   )
@@ -601,8 +626,8 @@ function PhotoUploadMsg({ active, initialUrl, onSubmit, disabled }) {
   }
 
   return (
-    <div style={cardBox}>
-      <div style={cardTitle}><i className="bi bi-camera-fill" /> {t('Candidate Photo')}</div>
+    <div className="interactive-card">
+      <div className="interactive-card-title"><i className="bi bi-camera-fill" /> {t('Candidate Photo (Optional)')}</div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
         {photoUrl ? (
           <img src={photoUrl} alt="Candidate Preview" style={{ width: 90, height: 90, borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--color-signal-mint)' }} />
@@ -611,17 +636,34 @@ function PhotoUploadMsg({ active, initialUrl, onSubmit, disabled }) {
             <i className="bi bi-person-bounding-box" style={{ fontSize: 32, color: 'var(--color-ash)' }} />
           </div>
         )}
-        <label style={{ ...controlStyle, cursor: 'pointer', textAlign: 'center', background: 'var(--color-abyss)' }}>
+        <label className="interactive-control" style={{ cursor: 'pointer', textAlign: 'center', background: 'var(--color-abyss)', display: 'block' }}>
           <i className="bi bi-upload" style={{ marginRight: 6 }} /> {t('Upload Passport Photo')}
           <input type="file" accept="image/*" onChange={handleFile} disabled={!active} style={{ display: 'none' }} />
         </label>
         <div style={{ fontSize: 11, color: 'var(--color-ash)', textAlign: 'center' }}>{t('Or enter photo URL below:')}</div>
-        <input style={controlStyle} type="url" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="https://example.com/photo.jpg" disabled={!active} />
+        <input className="interactive-control" type="url" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="https://example.com/photo.jpg" disabled={!active} />
       </div>
       {active && (
-        <button style={primaryBtn(!disabled)} disabled={disabled} onClick={() => onSubmit(photoUrl)}>
-          {t('Continue')} <i className="bi bi-arrow-right" />
-        </button>
+        <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+          <button
+            type="button"
+            className="interactive-btn"
+            style={{ background: 'var(--color-graphite)', color: 'var(--color-chalk)', border: '1px solid var(--color-graphite)', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+            onClick={() => onSubmit('')}
+            disabled={disabled}
+          >
+            {t('Skip')}
+          </button>
+          <button
+            type="button"
+            className="interactive-btn"
+            style={{ background: photoUrl ? 'var(--color-signal-mint)' : 'rgba(46,204,113,0.25)', color: '#fff', border: 'none', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: photoUrl ? 'pointer' : 'not-allowed' }}
+            onClick={() => onSubmit(photoUrl)}
+            disabled={!photoUrl || disabled}
+          >
+            {t('Continue')} <i className="bi bi-arrow-right" />
+          </button>
+        </div>
       )}
     </div>
   )
