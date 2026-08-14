@@ -568,7 +568,7 @@ function CandidateCardMsg({ result, appData }) {
     if (!cardRef.current) return
     setDownloading(true)
     try {
-      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: '#0f172a' })
+      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: '#ffffff' })
       const image = canvas.toDataURL('image/png')
       const link = document.createElement('a')
       link.href = image
