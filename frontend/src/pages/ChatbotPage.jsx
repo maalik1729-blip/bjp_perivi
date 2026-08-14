@@ -1185,9 +1185,11 @@ export default function ChatbotPage() {
         stopOtpCountdown()
         // Repeat applicant — show their existing application and stop here.
         if (res.already_applied && res.application) {
-          await botSay(t('✅ Mobile verified.'), 250)
-          await botSay(t('ℹ️ You have already submitted an application with this mobile number.'), 400)
-          addMsg('bot', 'submitted', { result: res.application, alreadyApplied: true })
+          const voterName = res.application.voter?.name || ''
+          setMessages([
+            { id: 'wb-top', from: 'bot', type: 'welcome_back_banner', name: voterName, subtitle: 'You have already submitted an application with this mobile number.', ts: new Date() },
+            { id: `sub-${Date.now()}`, from: 'bot', type: 'submitted', result: res.application, alreadyApplied: true, ts: new Date() },
+          ])
           setChatState(S.SUBMITTED)
           return
         }
