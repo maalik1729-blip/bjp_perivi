@@ -260,8 +260,8 @@ function LocalBodyMsg({ active, initial, onSubmit, disabled }) {
   )
 
   return (
-    <div style={cardBox}>
-      <div style={cardTitle}><i className="bi bi-geo-alt-fill" /> {t('Local Body Details')}</div>
+    <div className="interactive-card">
+      <div className="interactive-card-title"><i className="bi bi-geo-alt-fill" /> {t('Local Body Details')}</div>
 
       <div>
         <span style={fieldLabel}>{t('Local body type')}</span>
@@ -276,7 +276,7 @@ function LocalBodyMsg({ active, initial, onSubmit, disabled }) {
         <>
           <div>
             <span style={fieldLabel}>{t('Select Local Body Type')}</span>
-            <select style={controlStyle} value={lb.urbanType} disabled={!active}
+            <select className="interactive-control" value={lb.urbanType} disabled={!active}
               onChange={(e) => set({ urbanType: e.target.value, urbanBody: '' })}>
               <option value="">{t('Select local body type')}</option>
               {URBAN_BODY_TYPES.map((ty) => <option key={ty} value={ty}>{ty}</option>)}
@@ -284,7 +284,7 @@ function LocalBodyMsg({ active, initial, onSubmit, disabled }) {
           </div>
           <div>
             <span style={fieldLabel}>{t('Select Local Body')}</span>
-            <select style={controlStyle} value={lb.urbanBody} disabled={!active || !lb.urbanType}
+            <select className="interactive-control" value={lb.urbanBody} disabled={!active || !lb.urbanType}
               onChange={(e) => set({ urbanBody: e.target.value })}>
               <option value="">{lb.urbanType ? t('Select local body') : t('Select local body type first')}</option>
               {urbanBodies.map((b) => <option key={b.label} value={b.name}>{b.label}</option>)}
@@ -292,7 +292,7 @@ function LocalBodyMsg({ active, initial, onSubmit, disabled }) {
           </div>
           <div>
             <span style={fieldLabel}>{t('Enter Ward / Area')}</span>
-            <input style={controlStyle} type="text" value={lb.urbanWard} disabled={!active}
+            <input className="interactive-control" type="text" value={lb.urbanWard} disabled={!active}
               placeholder={t('e.g. Ward 12 / area name')}
               onChange={(e) => set({ urbanWard: e.target.value })} />
           </div>
@@ -304,19 +304,19 @@ function LocalBodyMsg({ active, initial, onSubmit, disabled }) {
         <>
           <div>
             <span style={fieldLabel}>{t('Panchayat Union (Block)')}</span>
-            <input style={controlStyle} type="text" value={lb.ruralUnion} disabled={!active}
+            <input className="interactive-control" type="text" value={lb.ruralUnion} disabled={!active}
               placeholder={t('Enter Panchayat Union / Block')}
               onChange={(e) => set({ ruralUnion: e.target.value })} />
           </div>
           <div>
             <span style={fieldLabel}>{t('Village Panchayat')}</span>
-            <input style={controlStyle} type="text" value={lb.ruralPanchayat} disabled={!active}
+            <input className="interactive-control" type="text" value={lb.ruralPanchayat} disabled={!active}
               placeholder={t('Enter Village Panchayat')}
               onChange={(e) => set({ ruralPanchayat: e.target.value })} />
           </div>
           <div>
             <span style={fieldLabel}>{t('Enter Ward / Area')}</span>
-            <input style={controlStyle} type="text" value={lb.ruralWard} disabled={!active}
+            <input className="interactive-control" type="text" value={lb.ruralWard} disabled={!active}
               placeholder={t('e.g. Ward 3 / area name')}
               onChange={(e) => set({ ruralWard: e.target.value })} />
           </div>
@@ -371,8 +371,8 @@ function PositionMsg({ active, bodyType, initial, onSubmit, disabled }) {
   }
 
   return (
-    <div style={cardBox}>
-      <div style={cardTitle}><i className="bi bi-trophy-fill" /> {t('Position to Contest')}</div>
+    <div className="interactive-card">
+      <div className="interactive-card-title"><i className="bi bi-trophy-fill" /> {t('Position to Contest')}</div>
       <div style={{ fontSize: 12, color: 'var(--color-ash)' }}>
         {t('Tick the preferences you want and choose a position for each. 1st preference is required.')}
       </div>
@@ -400,7 +400,7 @@ function PositionMsg({ active, bodyType, initial, onSubmit, disabled }) {
               </span>
             </label>
             {p.enabled && (
-              <select style={controlStyle} value={p.value} disabled={!active}
+              <select className="interactive-control" value={p.value} disabled={!active}
                 onChange={(e) => setValue(idx, e.target.value)}>
                 <option value="">{t('Select a position')}</option>
                 {availableFor(idx).map((o) => <option key={o} value={o}>{o}</option>)}
