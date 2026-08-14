@@ -1,10 +1,10 @@
 import axios from 'axios'
 
+const PROD_API_URL = 'https://bjp-perivi.onrender.com'
+
 const api = axios.create({
-  // Support VITE_API_URL env var for pointing at staging/production API.
-  // Falls back to same-origin (empty string) when not set — works when
-  // frontend and backend are co-served, or via the Vite dev proxy.
-  baseURL: import.meta.env.VITE_API_URL || '',
+  // Automatically points to live Render backend on Vercel, and local backend on localhost
+  baseURL: import.meta.env.VITE_API_URL || (typeof window !== 'undefined' && window.location.hostname !== 'localhost' ? PROD_API_URL : ''),
   withCredentials: true,
   timeout: 30000,
 })
