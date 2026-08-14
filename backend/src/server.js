@@ -12,20 +12,11 @@ const app = express()
 app.set('trust proxy', 1)
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
 
-// CORS — allow one or more client origins (comma-separated in CLIENT_ORIGIN).
-// Trailing slashes are tolerated. Defaults cover the Vercel frontend + local dev.
-const allowedOrigins = (process.env.CLIENT_ORIGIN ||
-  'https://bjp-mebership.vercel.app,http://localhost:3000')
-  .split(',')
-  .map((o) => o.trim().replace(/\/+$/, ''))
-  .filter(Boolean)
-
+// CORS — allow local dev (localhost:3000, 5173), Vercel production, and all client origins simultaneously
 app.use(cors({
   origin(origin, cb) {
-    // Non-browser requests (curl, health checks, same-origin) have no Origin.
-    if (!origin) return cb(null, true)
-    const clean = origin.replace(/\/+$/, '')
-    return cb(null, allowedOrigins.includes(clean))
+    // Allow all incoming origins (reflects request origin with credentials enabled)
+    return cb(null, true)
   },
   credentials: true,
 }))
