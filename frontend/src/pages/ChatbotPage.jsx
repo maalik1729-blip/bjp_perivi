@@ -680,6 +680,35 @@ function OrganiserNoticeMsg() {
   )
 }
 
+// ── Official BJP Lotus Logo SVG Component ───────────────────
+function BjpLotusLogo({ size = 36, className = '' }) {
+  return (
+    <svg
+      viewBox="0 0 141 151"
+      width={size}
+      height={size}
+      className={className}
+      style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g>
+        <path fill="#1a1a1a" d="m19.4 88.3c-1.1-1.8-0.9-3.4-0.3-5.1 1.4-3.7 4.2-6.2 7.3-8.3 0.4-0.2 0.7-0.5 0.9-0.6-2.1-1.5-4.5-2.8-6.5-4.6-5.1-4.6-7.9-10.6-9.8-17-1.8-5.9-2.4-12.1-2.4-18.2 0-7.7-1.7-15.1-5.3-21.9-1.1-2-2.4-3.9-3.7-5.9 1.4-1.3 3.2-1.5 5-1.5 5.7-0.1 10.9 1.6 15.8 4.4 5.1 3 9.2 7 12.6 11.7 0.2 0.3 0.5 0.6 0.8 1 2.3-7.3-1.5-12.6-5.3-18 2-1.2 4.1-0.9 6.1-0.6 7.6 1.1 13.7 5 18.7 10.6 1.9 2.1 3.4 4.5 5 6.8 0.3 0.3 0.5 0.7 0.5 0.8 4.3-7.2 8.5-14.4 13-22 4.8 6.1 7.8 12.6 10.8 18.9 2.4-2.7 4.8-5.5 7.4-8 3.8-3.6 8.2-6.3 13.2-7.7 2.7-0.7 4.2-0.7 7 0.3-3.4 6.1-4.8 12.5-3.1 19.3 1.4-1.9 2.7-4 4.3-5.8 5.3-6.2 11.7-10.4 19.9-11.7 2.4-0.4 4.9-0.6 7.2 0.1 0.7 0.2 1.4 0.6 2.3 1-0.4 0.5-0.7 0.8-1 1.1-4.4 5-7.3 10.6-7.5 17.4-0.1 3.8 0.2 7.6 0.5 11.4 0.6 8-0.1 15.7-3.5 23.1-2.4 5.3-5.8 9.9-10.1 13.9-0.1 0.1-0.3 0.3-0.4 0.4-0.1 0.1-0.1 0.1-0.1 0.2 4.2 3.8 8 7.7 6 14.3-0.8-0.5-1.4-0.9-2-1.3-1.6-1.1-3.3-1.3-5.1-0.7-2.9 0.8-5.3 2.5-7.5 4.4-3 2.7-6.4 4.5-10.4 5.2-3.8 0.7-7.6 0.5-11.3-1-0.4-0.2-0.9-0.2-1.3-0.1-6.3 1.4-10.8 7-10.7 13 0.1 6.8-0.3 13.6-2.1 20.2-0.7 2.4-1.7 4.6-2.6 6.9q2.7-0.3 5.7-0.6c0.6-0.1 1.2-0.2 1.8 0 1 0.2 1.3 1 1.1 2-0.2 1.1-1.1 2-1.9 2-2.7-0.1-5.4-0.2-8.1-0.1-1.7 0-1.9-1.4-2.6-2.3-0.7-0.8 0-1.3 0.4-1.9 2-2.9 2.9-6.2 3.3-9.7 0.6-4.9 0.9-9.8 1.2-14.7 0.1-1.5-0.4-2-2.1-2.3 0 0.5-0.1 1-0.1 1.5 0 5.4 0 10.7-1.1 16-0.9 4.1-2.2 7.9-5.3 10.9-3.2 3.1-7.2 4.1-11.5 4-2.1-0.1-4.3-0.3-6.4-0.8-2.1-0.5-2.4-2.2-0.8-3.7 1.6-1.6 3.6-1.9 5.8-1.8 2.9 0.2 5.9 0.5 8.8 0.8 1 0.1 1.5-0.3 2-1.1 3.2-4.7 4.7-10 5.2-15.6 0.3-4.4 0.1-8.8-1.6-13-1.2-2.9-3-5.2-5.8-6.8-1.9-1.1-3.7-2.3-5.6-3.4-0.3-0.2-0.8-0.3-1-0.2-4 1.9-8 1.4-12 0.3-2.8-0.8-5.2-2.2-7.5-3.9-2.5-1.8-5.2-3.2-8.2-3.7-2.1-0.1-4 0.4-6 1.7zm37.5 47.4c-1.1 0.1-2.2 0.3-3.2 0.4-1.5 0.1-2.7-0.5-4.2 0-0.2 0.1-0.9 0.3-0.9 0.6 0 0.2 0.2 0.4 0.8 0.6 1.3 0.4 2.2 0.1 5.4 0 1.1 0 1.8-0.5 2.1-1.6z"/>
+        <path fill="#1a1a1a" d="m55.1 145c-0.8-0.1-1.9-0.3-3-0.5-1.4-0.2-2.8-0.5-4.1-0.8-0.4-0.1-0.9-0.4-0.9-0.7 0-0.3 0.3-0.8 0.6-1 1.4-0.8 2.9-1 4.4-0.5 2.1 0.8 4.1 0.5 6.1-0.2 1.1-0.3 2.2-0.6 3.2-0.8 0.3-0.1 0.7-0.1 1.1-0.1 0.9 0.1 1.8 0.4 2 1.4 0.2 1-0.5 1.5-1.3 1.9-0.5 0.3-1 0.5-1.6 0.5-2 0.4-4.1 0.6-6.5 0.8z"/>
+        <path fill="#1a1a1a" d="m83.7 148.6c-1.7-0.2-3.4-0.4-5.1-0.7-0.4-0.1-1.1-0.6-1.1-0.9 0-0.4 0.4-1.1 0.8-1.3 0.9-0.4 1.9-0.8 2.8-0.9 2.6-0.2 5.2-0.3 7.9-0.3 0.6 0 1.3 0.1 1.8 0.4 0.4 0.2 0.9 0.8 1 1.2 0 0.4-0.5 1.1-0.9 1.2-1.2 0.4-2.1 0.8-4.3 1-0.5 0.1-1.5 0.2-2.9 0.3z"/>
+        <path fill="#1a1a1a" d="m74.1 139.7q1.8 0 3.6 0c1 0 1.9 0.3 2.1 1.4 0.2 1-0.7 1.5-1.5 1.7-3.1 1-6.3 1.1-9.4 0.2-1.5-0.4-1.7-1.6-0.4-2.6 0.6-0.4 1.4-0.7 2.1-0.8 1.1 0.1 2.3 0.1 3.5 0.1z"/>
+        <path fill="#1a1a1a" d="m52.5 146.5c1.9-0.4 3.3-0.2 4.1 0.1 0.6 0.2 1.7 0.5 1.8 1.1 0.1 0.7-1.1 1.4-1.5 1.6-0.7 0.4-1.6 1.3-6.8 0.6-1-0.1-2-0.4-3-0.8-0.4-0.2-0.8-0.7-0.8-1.2 0-0.5 0.6-0.8 0.9-1 1.6-0.8 4.2-0.6 5.3-0.4z"/>
+        <path fill="#1a1a1a" d="m88.5 137.3c-0.9 0-1.8 0-2.8 0-0.5 0-1.1 0-1.5-0.3-0.5-0.3-1.3-0.8-1.3-1.3 0-0.5 0.6-1.2 1.1-1.5 2.5-1.1 5.2-1.2 7.9-0.4 0.3 0.1 0.7 0.2 0.8 0.5 0.3 0.6 0.8 1.3 0.7 1.8-0.1 0.5-0.9 1-1.5 1.1-1 0.2-2.2 0.1-3.4 0.1z"/>
+        <path fill="#1a1a1a" d="m89.9 142.2c-1.7-0.1-3.4-0.1-5.1-0.3-1.2-0.1-1.5-0.9-0.6-1.8 0.5-0.5 1.3-1.1 2-1.1q3.9-0.15 7.8 0c1.3 0 2 0.8 1.9 1.7 0 0.3-0.1 0.6-0.3 0.8-0.4 0.5-1.2 0.6-1.8 0.6-1.2 0.1-2.5 0.1-3.9 0.1z"/>
+        <path fill="#1a1a1a" d="m69.8 148.6c-1.6-0.2-2.9-0.3-4.1-0.6-0.5-0.1-1.1-0.8-1.1-1.1 0-0.5 0.6-1.3 1-1.3 2.4-0.3 4.8-1.7 7.4-0.6 0.5 0.2 1.2 0.1 1.7 0.3 0.5 0.2 1 0.7 1.1 1.2 0.1 0.2-0.5 1-0.9 1.1-1.7 0.4-3.5 0.7-5.1 1z"/>
+        <path fill="#00a650" d="m24.1 82.9c0.1 0.1 0.2 0.2 0.4 0.3 0.6-0.1 1.2-0.2 1.8-0.2 3.4-0.1 5.5 1.7 9.2 3.6 1.5 0.8 3.9 2 7.1 2.8 1.8 0.5 7.2 1.9 8.5 0 0.5-0.7-0.1-1.1 0.3-3.5 0.3-2 0.9-3.5 1-3.8 0.4-0.8 1-2 2.1-3.2-0.2-0.1-0.5-0.2-0.7-0.3-2.7-1.1-5.4-2.2-8.2-3.3-0.6-0.2-1.3-0.3-1.9-0.1-3.4 1.1-6.8 1.6-10.4 0.6-0.5-0.1-1.2-0.1-1.6 0.2-1.7 1.1-3.4 2.2-4.9 3.5-1.1 0.9-1.8 2.3-2.7 3.4z"/>
+        <path fill="#00a650" d="m70 99.2c1 0.5 2.4 1 3.8 0.5 1.7-0.7 1.5-2.3 3.5-4.5 0.7-0.7 2-2.1 5.4-3.5 1.2-0.5 2.3-1.1 3.3-2 2.9-2.6 3-7.2 0.3-9.7-0.6-0.6-1.2-0.7-2-0.4-7.9 2.9-15.9 2.7-23.8 0.1-1.3-0.4-2-0.1-2.8 0.9-2 2.6-2 6.8 0.1 9.2 1.1 1.3 2.7 2.1 4 3.2 1.9 1.7 3.2 1.4 4.9 2.7 1.6 1.2 2.7 2.6 3.3 3.5z"/>
+        <path fill="#00a650" d="m90.6 80.3c0.6 0.9 1 1.8 1.3 2.7 0.1 0.5 0.5 2 0.2 4-0.3 2-1 2.2-0.8 2.9 0.5 1.8 5.4 2.6 9.5 1.5 2.2-0.6 3.8-1.7 6.7-3.6 2.8-1.9 3-2.5 4.8-3.4 1.7-0.9 4.2-1.8 7.9-1.9-0.3-0.8-0.7-1.9-1.5-2.9-0.5-0.6-1.1-1.1-1.7-1.6-1.1-0.8-2.3-1-3.7-0.6-1.5 0.5-3.2 0.8-4.7 1.3-3.6 1-7.2 1.2-10.9 0.3-2.7-0.6-4.9 0.2-7.1 1.3z"/>
+        <path fill="#f47216" d="m72.2 8.7c7.5 11.2 13.4 23 16.2 36.1 1.3 6 2 12.1 0.7 18.3-1.2 5.1-3.7 9.5-7.8 12.7-6 4.6-14.4 4.1-20.2-1.2-5.3-4.8-7.7-10.9-7.8-17.9-0.1-6.9 1.7-13.5 4.1-19.9 3.6-9.8 8.8-18.9 14.6-27.6-0.1-0.2 0-0.3 0.2-0.5zm-39 48.4c-1.7-5.5-2.5-11.2-2.5-17 0-4.2 0.9-8.5 1.3-12.7 0.1-0.5-0.1-1.2-0.4-1.5-2.5-2.8-4.8-5.7-7.5-8.2-5.1-4.6-11-7.4-17.7-7.6 1.3 2.9 2.9 5.7 3.9 8.8 2.6 7.4 3.1 15.1 3.1 22.9 0 4 0.7 7.8 2.2 11.4 2.5 6.2 6.1 11.7 11.7 15.6 4 2.8 8.5 3.6 13.6 2.1-3.8-4.1-6.1-8.8-7.7-13.8zm68.9 17.3c1.8 0.1 3.7 0.5 5.5 0.4 3.9-0.2 7.2-2.1 9.9-4.9 7.4-7.5 11.3-16.6 11-27.2-0.1-5.6-0.6-11.2-0.7-16.7-0.1-4.8 1.4-9.3 4-13.3 0.7-1.1 1.6-2.2 2.5-3.4-3.2 0.1-6.1 0.8-8.9 2.1-7.5 3.6-12.6 9.6-16.2 17-0.2 0.3-0.2 0.8-0.1 1.1 1.2 4.9 2.2 9.9 2.6 14.9 0.4 6 0.1 11.8-1.9 17.5-1.6 4.6-4.1 8.6-7.8 11.9 0.1 0.3 0.1 0.4 0.1 0.6zm-13.4 2.6c9.4-1.8 17.1-9.7 18.8-19.4 1.1-6.5 0.5-13-0.7-19.4-0.9-4.6-2.2-9.1-3.3-13.7-0.9-3.8-1.4-7.6-0.4-11.4 0.4-1.5 0.9-2.9 1.5-4.7-1.6 0.4-3.1 0.7-4.5 1.3-6.5 2.5-10.9 7.3-14.4 13.2-0.2 0.3-0.2 0.9 0 1.3 4.4 8.3 7.5 17.1 8.2 26.6 0.3 3.4 0.4 7-0.1 10.4-0.7 5-3.1 9.4-5.6 13.6-0.5 0.8-0.9 1.5-1.6 2.6 1-0.3 1.5-0.3 2.1-0.4zm-50.7-63.3c1.2 4 0.9 8.2-0.1 12.2-1.6 5.7-2.4 11.5-2.3 17.5 0.1 6.4 1.4 12.5 4.3 18.2 2.8 5.4 6.6 9.8 12.1 12.5 1.2 0.6 2.5 1 3.9 1.6-1.1-1.8-2.1-3.2-2.9-4.8-4-8.1-4.8-16.6-3.2-25.5 1.1-5.9 3.2-11.5 5.5-17.1 0.2-0.5 0.3-1.4 0-1.9-2.8-4.9-6.1-9.4-10.3-13.2-2.8-2.6-5.9-4.6-9.5-5.5 0.9 2.1 1.9 4 2.5 6z"/>
+      </g>
+    </svg>
+  )
+}
+
 // ── Candidate Card component (Step 5) ─────────────────────
 function CandidateCardMsg({ result, appData }) {
   const { t } = useLang()
@@ -687,15 +716,14 @@ function CandidateCardMsg({ result, appData }) {
   const [downloading, setDownloading] = useState(false)
   const v = appData?.voter || result?.voter || {}
   const lb = appData?.localBody || result?.local_body || {}
-  const rawName = v.name || result?.name || ''
+  const rawName = v.name || result?.name || 'Verified Applicant'
   const cleanName = String(rawName).replace(/[-_,\s]+$/, '').trim()
-  const displayName = cleanName && cleanName.toLowerCase() !== 'verified applicant' ? cleanName : t('Candidate Nomination')
 
   const handleDownload = async () => {
     if (!cardRef.current) return
     setDownloading(true)
     try {
-      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: null })
+      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: '#ffffff' })
       const image = canvas.toDataURL('image/png')
       const link = document.createElement('a')
       link.href = image
@@ -713,85 +741,148 @@ function CandidateCardMsg({ result, appData }) {
     : [lb.ruralUnion, lb.ruralPanchayat, lb.ruralWard && `Ward ${lb.ruralWard}`].filter(Boolean).join(' · ')
 
   const positionsStr = Array.isArray(appData?.positionPrefs) ? appData.positionPrefs.filter(Boolean).join(' / ') : ''
-  const primaryPos = Array.isArray(appData?.positionPrefs) && appData.positionPrefs[0] ? appData.positionPrefs[0] : (positionsStr || '')
+  const primaryPos = Array.isArray(appData?.positionPrefs) && appData.positionPrefs[0] ? appData.positionPrefs[0] : (positionsStr || t('Candidate Applicant'))
   const appId = result?.application_id || 'BJP-2026'
   const membershipId = appData?.membershipId || result?.membership_id || ''
 
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div ref={cardRef} className="candidate-template-card">
-        {/* Candidate photo inside the template circular frame */}
-        <div className="template-photo-slot">
-          {appData?.photoUrl ? (
-            <img src={appData.photoUrl} alt="Candidate Photo" className="template-candidate-photo" />
-          ) : (
-            <div className="template-avatar-placeholder">
-              <i className="bi bi-person-fill" />
-            </div>
-          )}
+      <div ref={cardRef} className="candidate-card-box ratio-9-16 clean-light">
+        {/* Top Tricolor Ribbon */}
+        <div className="card-tricolor-bar" />
+
+        {/* Top Header */}
+        <div className="candidate-card-header">
+          <BjpLotusLogo size={36} className="card-party-logo" />
+          <div className="card-header-text">
+            <div className="card-org-name">BHARATIYA JANATA PARTY</div>
+            <div className="card-state-name">TAMIL NADU STATE UNIT</div>
+          </div>
         </div>
 
-        {/* Unified Official Nomination Pass Panel */}
-        <div className="template-unified-panel">
-          {/* Header: Name & Target Role */}
-          <div className="panel-header">
-            <div className="panel-candidate-name">{displayName}</div>
-            {primaryPos && (
-              <div className="panel-candidate-role">
-                <i className="bi bi-award-fill" /> {primaryPos}
+        <div className="card-election-tag">
+          <span>LOCAL BODY ELECTIONS 2026</span>
+        </div>
+
+        {/* Central Candidate Portrait */}
+        <div className="card-photo-container">
+          <div className="card-photo-frame">
+            {appData?.photoUrl ? (
+              <img src={appData.photoUrl} alt="Candidate Photo" className="candidate-card-photo" />
+            ) : (
+              <div className="candidate-card-avatar-placeholder">
+                <BjpLotusLogo size={54} />
               </div>
             )}
           </div>
-
-          {/* Meta Bar: App ID & Verified Badge */}
-          <div className="panel-meta-bar">
-            <span className="panel-app-id">ID: <strong>{appId}</strong></span>
-            <span className="panel-verified-tag">
-              <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
-            </span>
+          <div className="card-badge-verified">
+            <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
           </div>
+        </div>
 
-          {/* Structured Key Details Table (no truncation) */}
-          <div className="panel-details-table">
-            <div className="panel-row">
-              <span className="row-label"><i className="bi bi-person-vcard" /> {t('EPIC / Voter ID')}</span>
-              <span className="row-value">{v.epic_no || appData?.epic || '—'}</span>
+        {/* Candidate Identity */}
+        <div className="candidate-identity-block">
+          <div className="candidate-card-name">{cleanName}</div>
+          <div className="candidate-target-badge">{primaryPos}</div>
+          <div className="candidate-card-id-pill">
+            <span className="id-label">APP ID:</span>
+            <span className="id-value">{appId}</span>
+          </div>
+        </div>
+
+        {/* Information Details Panel */}
+        <div className="candidate-card-details">
+          <div className="card-info-grid">
+            <div className="card-info-row">
+              <span className="info-key"><i className="bi bi-person-vcard" /> EPIC / Voter ID</span>
+              <span className="info-val">{v.epic_no || appData?.epic || '—'}</span>
             </div>
 
-            <div className="panel-row">
-              <span className="row-label"><i className="bi bi-geo-alt" /> {t('Assembly / Dist')}</span>
-              <span className="row-value">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
+            <div className="card-info-row">
+              <span className="info-key"><i className="bi bi-geo-alt" /> Assembly / Dist</span>
+              <span className="info-val">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
             </div>
 
             {locationStr && (
-              <div className="panel-row">
-                <span className="row-label"><i className="bi bi-building" /> {t('Local Body & Ward')}</span>
-                <span className="row-value">{locationStr}</span>
+              <div className="card-info-row">
+                <span className="info-key"><i className="bi bi-building" /> Local Body</span>
+                <span className="info-val">{locationStr}</span>
               </div>
             )}
 
             {membershipId && (
-              <div className="panel-row">
-                <span className="row-label"><i className="bi bi-card-heading" /> {t('Membership No')}</span>
-                <span className="row-value highlight-orange">{membershipId}</span>
+              <div className="card-info-row">
+                <span className="info-key"><i className="bi bi-card-heading" /> Membership No</span>
+                <span className="info-val highlight-orange">{membershipId}</span>
               </div>
             )}
           </div>
+        </div>
 
-          {/* Official Security Stamp Footer */}
-          <div className="panel-footer">
-            <span className="panel-security-label">
-              <i className="bi bi-shield-fill-check" /> SECURED DIGITAL RECORD · BJP TN 2026
-            </span>
-            <span className="panel-timestamp">
-              {fmtDateTime(result?.submitted_at)}
-            </span>
+        {/* Digital Verification & Stamp */}
+        <div className="candidate-qr-verification">
+          <div className="qr-box">
+            {/* Clean SVG QR pattern */}
+            <svg viewBox="0 0 100 100" className="qr-svg" width="44" height="44">
+              <rect width="100" height="100" fill="#ffffff" />
+              {/* Corner 1 */}
+              <rect x="6" y="6" width="26" height="26" fill="#0f172a" rx="3" />
+              <rect x="11" y="11" width="16" height="16" fill="#ffffff" rx="1" />
+              <rect x="15" y="15" width="8" height="8" fill="#c2410c" rx="1" />
+              {/* Corner 2 */}
+              <rect x="68" y="6" width="26" height="26" fill="#0f172a" rx="3" />
+              <rect x="73" y="11" width="16" height="16" fill="#ffffff" rx="1" />
+              <rect x="77" y="15" width="8" height="8" fill="#c2410c" rx="1" />
+              {/* Corner 3 */}
+              <rect x="6" y="68" width="26" height="26" fill="#0f172a" rx="3" />
+              <rect x="11" y="73" width="16" height="16" fill="#ffffff" rx="1" />
+              <rect x="15" y="77" width="8" height="8" fill="#c2410c" rx="1" />
+              {/* Data points */}
+              <rect x="38" y="8" width="6" height="6" fill="#0f172a" />
+              <rect x="50" y="8" width="8" height="6" fill="#0f172a" />
+              <rect x="38" y="20" width="8" height="6" fill="#0f172a" />
+              <rect x="50" y="20" width="6" height="6" fill="#0f172a" />
+              <rect x="10" y="38" width="8" height="8" fill="#0f172a" />
+              <rect x="24" y="38" width="6" height="6" fill="#0f172a" />
+              <rect x="38" y="38" width="10" height="10" fill="#c2410c" rx="2" />
+              <rect x="54" y="38" width="8" height="6" fill="#0f172a" />
+              <rect x="70" y="38" width="8" height="8" fill="#0f172a" />
+              <rect x="84" y="38" width="6" height="6" fill="#0f172a" />
+              <rect x="38" y="54" width="6" height="8" fill="#0f172a" />
+              <rect x="50" y="54" width="8" height="8" fill="#0f172a" />
+              <rect x="68" y="54" width="6" height="6" fill="#0f172a" />
+              <rect x="80" y="54" width="10" height="8" fill="#0f172a" />
+              <rect x="38" y="68" width="8" height="8" fill="#0f172a" />
+              <rect x="52" y="68" width="6" height="6" fill="#0f172a" />
+              <rect x="68" y="68" width="12" height="10" fill="#0f172a" />
+              <rect x="86" y="68" width="6" height="8" fill="#0f172a" />
+              <rect x="38" y="82" width="6" height="10" fill="#0f172a" />
+              <rect x="50" y="82" width="8" height="8" fill="#0f172a" />
+              <rect x="68" y="84" width="10" height="6" fill="#0f172a" />
+              <rect x="84" y="82" width="8" height="8" fill="#0f172a" />
+            </svg>
+          </div>
+          <div className="qr-info-meta">
+            <div className="qr-title">DIGITAL NOMINATION PASS</div>
+            <div className="qr-sub">Scan to verify credentials online</div>
+            <div className="qr-sec-hash">HASH: {appId.slice(-6)} · SECURE</div>
+          </div>
+        </div>
+
+        {/* Footer with Security & Timestamp */}
+        <div className="candidate-card-footer">
+          <div className="footer-meta">
+            <span className="submit-time">{fmtDateTime(result?.submitted_at)}</span>
+            <span className="security-code">STATE ELECTION COMMITTEE · TN</span>
+          </div>
+          <div className="card-seal-icon">
+            <i className="bi bi-shield-fill-check" />
           </div>
         </div>
       </div>
 
-      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ maxWidth: 380, width: '100%', marginTop: 12 }}>
-        <i className="bi bi-download" /> {downloading ? 'Generating Official Card...' : t('Download Official Candidate Card')}
+      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ maxWidth: 330, width: '100%', marginTop: 12 }}>
+        <i className="bi bi-download" /> {downloading ? 'Generating 9:16 Card...' : t('Download Candidate Card (9:16)')}
       </button>
     </div>
   )
@@ -1739,14 +1830,7 @@ export default function ChatbotPage() {
         <div className="chatbot-container">
           <header className="chat-header saffron-header">
             <div className="chat-header-avatar">
-              <img
-                src="/logo.png"
-                alt="BJP Logo"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/bjp_logo.png';
-                }}
-              />
+              <BjpLotusLogo size={32} />
             </div>
 
             {/* Language toggle: English / Tamil + Reset Flow button */}
