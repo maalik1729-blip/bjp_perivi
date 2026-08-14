@@ -507,22 +507,24 @@
 }
 
 /* ── 9:16 Portrait Candidate ID Card (Light Theme) ───────────── */
+/* ── Candidate 9:16 Digital ID Card (Clean Light Theme) ───── */
 .candidate-card-box.ratio-9-16 {
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   aspect-ratio: 9 / 16;
-  background: linear-gradient(175deg, #ffffff 0%, #fffbf6 50%, #f8fafc 100%);
-  border: 2.5px solid #ff9933;
+  background: #ffffff;
+  border: 1.5px solid #fed7aa;
   border-radius: 20px;
-  padding: 16px 14px;
+  padding: 14px 14px 12px 14px;
   color: #0f172a;
-  box-shadow: 0 16px 36px rgba(255, 153, 51, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px -4px rgba(249, 115, 22, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .candidate-card-box.ratio-9-16 .card-tricolor-bar {
@@ -530,18 +532,19 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
+  height: 5px;
   background: linear-gradient(90deg, #ff9933 0%, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%, #138808 100%);
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
 }
 
 .candidate-card-box.ratio-9-16 .candidate-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-top: 6px;
-  padding-bottom: 8px;
-  border-bottom: 1.5px solid #fed7aa;
-  margin-bottom: 6px;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ffedd5;
 }
 
 .candidate-card-box.ratio-9-16 .card-party-logo {
@@ -549,34 +552,37 @@
   height: 34px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 .candidate-card-box.ratio-9-16 .card-org-name {
   font-size: 11.5px;
   font-weight: 900;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   color: #c2410c;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .candidate-card-box.ratio-9-16 .card-state-name {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #475569;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #64748b;
+  margin-top: 1px;
 }
 
 .candidate-card-box.ratio-9-16 .card-election-tag {
-  background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%);
-  border: 1px solid #fdba74;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
   border-radius: 6px;
   padding: 3px 8px;
   text-align: center;
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   color: #c2410c;
-  margin-bottom: 8px;
+  margin-top: 5px;
+  margin-bottom: 4px;
 }
 
 .candidate-card-box.ratio-9-16 .card-photo-container {
@@ -584,39 +590,64 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
   position: relative;
+  margin: 2px 0;
+}
+
+.candidate-card-box.ratio-9-16 .card-photo-frame {
+  width: 86px;
+  height: 86px;
+  border-radius: 18px;
+  border: 2px solid #ffedd5;
+  outline: 2px solid #ea580c;
+  outline-offset: 1px;
+  background: #fff8f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.15);
 }
 
 .candidate-card-box.ratio-9-16 .candidate-card-photo {
-  width: 96px;
-  height: 96px;
-  border-radius: 16px;
-  border: 3px solid #ff9933;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background: #f1f5f9;
-  box-shadow: 0 6px 16px rgba(255, 153, 51, 0.25);
+}
+
+.candidate-card-box.ratio-9-16 .candidate-card-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #fff7ed, #fed7aa);
+  color: #c2410c;
+  font-size: 42px;
 }
 
 .candidate-card-box.ratio-9-16 .card-badge-verified {
-  margin-top: 6px;
+  margin-top: -8px;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
-  font-size: 10px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-size: 9px;
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(4, 120, 87, 0.12);
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-details {
+.candidate-card-box.ratio-9-16 .candidate-identity-block {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  flex: 1;
+  align-items: center;
+  gap: 3px;
+  margin: 2px 0;
 }
 
 .candidate-card-box.ratio-9-16 .candidate-card-name {
@@ -627,52 +658,74 @@
   line-height: 1.2;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-id-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+.candidate-card-box.ratio-9-16 .candidate-target-badge {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  padding: 3px 8px;
   border-radius: 6px;
-  font-size: 11px;
+  padding: 2px 8px;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #c2410c;
+  text-align: center;
+  max-width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-id-badge .id-label {
-  color: #64748b;
+.candidate-card-box.ratio-9-16 .candidate-card-id-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 1.5px 7px;
+  border-radius: 4px;
+}
+
+.candidate-card-box.ratio-9-16 .candidate-card-id-pill .id-label {
+  color: #7c2d12;
   font-weight: 700;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-id-badge .id-value {
+.candidate-card-box.ratio-9-16 .candidate-card-id-pill .id-value {
   color: #ea580c;
   font-family: monospace;
   font-weight: 900;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
+}
+
+.candidate-card-box.ratio-9-16 .candidate-card-details {
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0;
 }
 
 .candidate-card-box.ratio-9-16 .card-info-grid {
   display: flex;
   flex-direction: column;
-  gap: 4.5px;
-  background: #ffffff;
+  gap: 5px;
+  background: #f8fafc;
   border-radius: 10px;
-  padding: 9px;
-  border: 1px solid #fed7aa;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
 }
 
 .candidate-card-box.ratio-9-16 .card-info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10.5px;
+  font-size: 10px;
   gap: 6px;
 }
 
 .candidate-card-box.ratio-9-16 .info-key {
   color: #64748b;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   flex-shrink: 0;
 }
 
@@ -685,18 +738,69 @@
   text-overflow: ellipsis;
 }
 
-.candidate-card-box.ratio-9-16 .info-val.highlight {
-  color: #c2410c;
+.candidate-card-box.ratio-9-16 .info-val.highlight-orange {
+  color: #ea580c;
+  font-weight: 800;
+}
+
+.candidate-card-box.ratio-9-16 .candidate-qr-verification {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 6px 8px;
+  margin: 3px 0;
+}
+
+.candidate-card-box.ratio-9-16 .qr-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.candidate-card-box.ratio-9-16 .qr-info-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+}
+
+.candidate-card-box.ratio-9-16 .qr-title {
+  font-size: 9.5px;
   font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+}
+
+.candidate-card-box.ratio-9-16 .qr-sub {
+  font-size: 8px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.candidate-card-box.ratio-9-16 .qr-sec-hash {
+  font-size: 7.5px;
+  font-weight: 800;
+  color: #047857;
+  letter-spacing: 0.4px;
+  font-family: monospace;
 }
 
 .candidate-card-box.ratio-9-16 .candidate-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1.5px solid #e2e8f0;
-  padding-top: 6px;
-  margin-top: 6px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 5px;
+  margin-top: 2px;
 }
 
 .candidate-card-box.ratio-9-16 .footer-meta {
@@ -706,16 +810,21 @@
 }
 
 .candidate-card-box.ratio-9-16 .submit-time {
-  font-size: 9px;
-  color: #64748b;
+  font-size: 8.5px;
+  color: #94a3b8;
   font-weight: 600;
 }
 
 .candidate-card-box.ratio-9-16 .security-code {
-  font-size: 8.5px;
-  font-weight: 900;
-  letter-spacing: 0.6px;
-  color: #15803d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #047857;
+}
+
+.candidate-card-box.ratio-9-16 .card-seal-icon {
+  color: #ea580c;
+  font-size: 15px;
 }
 
 .candidate-card-box.ratio-9-16 .card-seal-icon {
