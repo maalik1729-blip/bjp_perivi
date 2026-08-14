@@ -168,6 +168,67 @@ function WelcomeBackBannerMsg({ name, subtitle }) {
   )
 }
 
+// ── BJP Membership input card ──────────────────────────────
+function MembershipInputMsg({ active, onSubmit, onSkip, disabled }) {
+  const { t } = useLang()
+  const [membershipId, setMembershipId] = useState('')
+
+  const handleContinue = () => {
+    if (!membershipId.trim()) return
+    onSubmit(membershipId.trim())
+  }
+
+  return (
+    <div className="interactive-card">
+      <div className="interactive-card-title">
+        <i className="bi bi-card-heading" /> {t('BJP Membership ID (Optional)')}
+      </div>
+      <div style={{ fontSize: 12, color: 'var(--color-ash)', lineHeight: 1.4 }}>
+        {t('Please enter your 8 to 12 digit BJP Membership ID if you have one.')}
+      </div>
+      {active ? (
+        <>
+          <input
+            className="interactive-control"
+            type="text"
+            value={membershipId}
+            disabled={disabled}
+            onChange={(e) => setMembershipId(e.target.value.replace(/\D/g, ''))}
+            placeholder={t('e.g. 12345678')}
+          />
+          <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+            <button
+              type="button"
+              className="interactive-btn"
+              style={{ background: 'var(--color-graphite)', color: 'var(--color-chalk)', border: '1px solid var(--color-graphite)', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+              onClick={onSkip}
+              disabled={disabled}
+            >
+              {t('Skip')}
+            </button>
+            <button
+              type="button"
+              className="interactive-btn"
+              style={{ background: membershipId.trim() ? 'var(--color-signal-mint)' : 'rgba(46,204,113,0.25)', color: '#fff', border: 'none', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: membershipId.trim() ? 'pointer' : 'not-allowed' }}
+              onClick={handleContinue}
+              disabled={!membershipId.trim() || disabled}
+            >
+              {t('Submit')}
+            </button>
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--color-ash)', marginTop: 4 }}>
+            {t('Not a BJP Member yet?')} <a href="https://www.bjp.org" target="_blank" rel="noopener noreferrer" style={{ color: '#ff9933', textDecoration: 'underline' }}>{t('Register here →')}</a>
+          </div>
+        </>
+      ) : (
+        <div style={{ fontSize: 13, color: 'var(--color-ash)' }}>
+          {membershipId ? `${t('Membership ID')}: ${membershipId}` : t('Skipped Membership ID')}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ── Voter confirmation card ────────────────────────────────
 function VoterCardMsg({ voter, active, onConfirm, onRetry, disabled }) {
   const { t } = useLang()
@@ -435,7 +496,6 @@ function SocialMediaMsg({ active, initial, onSubmit, disabled }) {
 
   const handleContinue = () => {
     const filled = SOCIALS.map((s) => [s.key, (vals[s.key] || '').trim()]).filter(([, v]) => v)
-    if (!filled.length) { setError(t('Please add at least one social media URL.')); return }
     for (const [k, v] of filled) {
       if (!URL_RE.test(v)) { setError(t('Please enter a valid URL for {field}.', { field: k })); return }
     }
@@ -443,24 +503,46 @@ function SocialMediaMsg({ active, initial, onSubmit, disabled }) {
     onSubmit(Object.fromEntries(filled))
   }
 
+  const handleSkip = () => {
+    setError('')
+    onSubmit({ facebook: '', instagram: '', twitter: '', youtube: '' })
+  }
+
   return (
-    <div style={cardBox}>
-      <div style={cardTitle}><i className="bi bi-share-fill" /> {t('Add Your Social Media')}</div>
+    <div className="interactive-card">
+      <div className="interactive-card-title"><i className="bi bi-share-fill" /> {t('Add Your Social Media (Optional)')}</div>
       <div style={{ fontSize: 12, color: 'var(--color-ash)' }}>
-        {t('Add at least one valid social media profile URL.')}
+        {t('Add your social media profile URLs or skip this step.')}
       </div>
       {SOCIALS.map((s) => (
         <div key={s.key}>
           <span style={fieldLabel}><i className={`bi bi-${s.icon}`} style={{ marginRight: 6 }} />{t(s.label)}</span>
-          <input style={controlStyle} type="url" value={vals[s.key]} disabled={!active} placeholder={s.placeholder}
+          <input className="interactive-control" type="url" value={vals[s.key]} disabled={!active} placeholder={s.placeholder}
             onChange={(e) => { set(s.key, e.target.value); if (error) setError('') }} />
         </div>
       ))}
       {error && <div style={{ fontSize: 12, color: '#e74c3c' }}><i className="bi bi-exclamation-circle" /> {error}</div>}
       {active && (
-        <button style={primaryBtn(!disabled)} disabled={disabled} onClick={handleContinue}>
-          {t('Continue')} <i className="bi bi-arrow-right" />
-        </button>
+        <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+          <button
+            type="button"
+            className="interactive-btn"
+            style={{ background: 'var(--color-graphite)', color: 'var(--color-chalk)', border: '1px solid var(--color-graphite)', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+            onClick={handleSkip}
+            disabled={disabled}
+          >
+            {t('Skip')}
+          </button>
+          <button
+            type="button"
+            className="interactive-btn"
+            style={{ background: 'var(--color-signal-mint)', color: '#fff', border: 'none', flex: 1, padding: '10px', borderRadius: 10, fontWeight: 700, cursor: 'pointer' }}
+            onClick={handleContinue}
+            disabled={disabled}
+          >
+            {t('Continue')} <i className="bi bi-arrow-right" />
+          </button>
+        </div>
       )}
     </div>
   )
@@ -718,7 +800,6 @@ function ReviewMsg({ active, data, mobile, onConfirm, onEdit, disabled }) {
     if (!draft.bodyType || !localBodyComplete(draft.bodyType, draft.localBody)) { setError(t('Please complete all local body fields.')); return }
     if (!draft.positionPrefs[0]) { setError(t('1st preference position is required.')); return }
     const filledSocial = Object.entries(draft.social).map(([k, val]) => [k, (val || '').trim()]).filter(([, val]) => val)
-    if (!filledSocial.length) { setError(t('Add at least one social media URL.')); return }
     for (const [k, val] of filledSocial) {
       if (!URL_RE.test(val)) { setError(t('Invalid URL for {field}.', { field: k })); return }
     }
@@ -1208,7 +1289,8 @@ export default function ChatbotPage() {
           setChatState(S.SUBMITTED)
           return
         }
-        await botSay(t('✅ Mobile verified! Please enter your BJP Membership ID.'), 300)
+        await botSay(t('✅ Mobile verified! Now some details about your BJP Membership.'), 300)
+        addMsg('bot', 'membership_card', {})
         setChatState(S.AWAIT_MEMBERSHIP)
       } else {
         await botSay(`❌ ${res?.message || t('Invalid OTP. Please try again.')}`, 250)
@@ -1219,12 +1301,13 @@ export default function ChatbotPage() {
     }
   }
 
-  const handleMembershipSubmit = async () => {
-    const membershipId = inputValue.trim()
-    if (!membershipId) { flashSendHint(t('Please enter your BJP Membership ID')); return }
-    patchData({ membershipId })
-    addMsg('user', 'text', { text: membershipId })
-    setInputValue('')
+  const handleMembershipSubmit = async (membershipId = '') => {
+    patchData({ membershipId: membershipId.trim() })
+    if (membershipId.trim()) {
+      addMsg('user', 'text', { text: `${t('Membership ID')}: ${membershipId.trim()}` })
+    } else {
+      addMsg('user', 'text', { text: t('Skipped Membership ID') })
+    }
     await botSay(t('Thank you. Now please enter your EPIC Number (Voter ID).'), 350)
     await botSay(t('Format: letters followed by digits, e.g. ABC1234567'), 200)
     setChatState(S.AWAIT_EPIC)
@@ -1405,7 +1488,6 @@ export default function ChatbotPage() {
     switch (chatState) {
       case S.AWAIT_MOBILE: return { type: 'tel', placeholder: t('Enter 10-digit mobile number'), maxLength: 10, inputMode: 'numeric' }
       case S.AWAIT_OTP: return { type: 'tel', placeholder: t('Enter OTP'), maxLength: 8, inputMode: 'numeric' }
-      case S.AWAIT_MEMBERSHIP: return { type: 'text', placeholder: t('Enter your BJP Membership ID'), maxLength: 40 }
       case S.AWAIT_EPIC: return { type: 'text', placeholder: t('EPIC Number (e.g. ABC1234567)'), maxLength: 12 }
       default: return null
     }
@@ -1416,7 +1498,6 @@ export default function ChatbotPage() {
     const val = inputValue.trim()
     if (chatState === S.AWAIT_MOBILE) return val.length !== 10
     if (chatState === S.AWAIT_OTP) return val.length < 4
-    if (chatState === S.AWAIT_MEMBERSHIP) return !val
     if (chatState === S.AWAIT_EPIC) return !/^[A-Z]{2,4}\d{6,8}$/.test(val.toUpperCase())
     return !val
   }
@@ -1446,7 +1527,6 @@ export default function ChatbotPage() {
     switch (chatState) {
       case S.AWAIT_MOBILE: await handleMobileSubmit(); break
       case S.AWAIT_OTP: await handleOtpSubmit(); break
-      case S.AWAIT_MEMBERSHIP: await handleMembershipSubmit(); break
       case S.AWAIT_EPIC: await handleEpicSubmit(); break
       default: break
     }
@@ -1466,6 +1546,15 @@ export default function ChatbotPage() {
         return <WelcomeBannerMsg onStart={handleStart} />
       case 'welcome_back_banner':
         return <WelcomeBackBannerMsg name={msg.name || appData.voter?.name} subtitle={msg.subtitle} />
+      case 'membership_card':
+        return (
+          <MembershipInputMsg
+            active={isLatest && chatState === S.AWAIT_MEMBERSHIP}
+            onSubmit={handleMembershipSubmit}
+            onSkip={() => handleMembershipSubmit('')}
+            disabled={isTyping}
+          />
+        )
       case 'voter_card':
         return (
           <VoterCardMsg
@@ -1601,7 +1690,7 @@ export default function ChatbotPage() {
   }
 
   const inputCfg = getInputCfg()
-  const wideTypes = ['voter_card', 'photo', 'welcome_banner', 'welcome_back_banner', 'local_body', 'position', 'social', 'work', 'ward_strategy', 'video', 'extra_questions', 'profile_optional', 'local_area', 'review', 'submitted']
+  const wideTypes = ['membership_card', 'voter_card', 'photo', 'welcome_banner', 'welcome_back_banner', 'local_body', 'position', 'social', 'work', 'ward_strategy', 'video', 'extra_questions', 'profile_optional', 'local_area', 'review', 'submitted']
 
   return (
     <div className="chatbot-app bjp-theme">

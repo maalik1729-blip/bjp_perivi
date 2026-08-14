@@ -92,9 +92,6 @@ export async function postSubmitApplication(req, res) {
   }
 
   const membershipId = String(body.membership_id || '').trim()
-  if (!membershipId) {
-    return res.status(400).json({ success: false, message: 'BJP Membership ID is required.' })
-  }
 
   const epic = normalizeEpic(body.epic_no)
   if (!isValidEpic(epic)) {
