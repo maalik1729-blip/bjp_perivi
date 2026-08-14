@@ -694,7 +694,7 @@ function CandidateCardMsg({ result, appData }) {
     if (!cardRef.current) return
     setDownloading(true)
     try {
-      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: '#ffffff' })
+      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: null })
       const image = canvas.toDataURL('image/png')
       const link = document.createElement('a')
       link.href = image
@@ -718,142 +718,73 @@ function CandidateCardMsg({ result, appData }) {
 
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div ref={cardRef} className="candidate-card-box ratio-9-16 clean-light">
-        {/* Top Tricolor Ribbon */}
-        <div className="card-tricolor-bar" />
-
-        {/* Top Header */}
-        <div className="candidate-card-header">
-          <img src="/logo.png" alt="BJP Logo" className="card-party-logo" onError={(e) => { e.target.src = '/bjp_logo.png' }} />
-          <div className="card-header-text">
-            <div className="card-org-name">BHARATIYA JANATA PARTY</div>
-            <div className="card-state-name">TAMIL NADU STATE UNIT</div>
-          </div>
+      <div ref={cardRef} className="candidate-template-card">
+        {/* Candidate photo inside the template circular frame */}
+        <div className="template-photo-slot">
+          {appData?.photoUrl ? (
+            <img src={appData.photoUrl} alt="Candidate Photo" className="template-candidate-photo" />
+          ) : (
+            <div className="template-avatar-placeholder">
+              <i className="bi bi-person-fill" />
+            </div>
+          )}
         </div>
 
-        <div className="card-election-tag">
-          <span>LOCAL BODY ELECTIONS 2026</span>
-        </div>
-
-        {/* Central Candidate Portrait */}
-        <div className="card-photo-container">
-          <div className="card-photo-frame">
-            {appData?.photoUrl ? (
-              <img src={appData.photoUrl} alt="Candidate Photo" className="candidate-card-photo" />
-            ) : (
-              <div className="candidate-card-avatar-placeholder">
-                <i className="bi bi-person-fill" />
-              </div>
-            )}
-          </div>
-          <div className="card-badge-verified">
+        {/* Content Section positioned over the bright center of the template */}
+        <div className="template-content-area">
+          <div className="template-verified-badge">
             <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
           </div>
-        </div>
 
-        {/* Candidate Identity */}
-        <div className="candidate-identity-block">
-          <div className="candidate-card-name">{cleanName}</div>
-          <div className="candidate-target-badge">{primaryPos}</div>
-          <div className="candidate-card-id-pill">
-            <span className="id-label">APP ID:</span>
-            <span className="id-value">{appId}</span>
+          <div className="template-candidate-name">{cleanName}</div>
+
+          <div className="template-position-pill">
+            <i className="bi bi-award-fill" /> {primaryPos}
           </div>
-        </div>
 
-        {/* Information Details Panel */}
-        <div className="candidate-card-details">
-          <div className="card-info-grid">
-            <div className="card-info-row">
-              <span className="info-key"><i className="bi bi-person-vcard" /> EPIC / Voter ID</span>
+          <div className="template-id-row">
+            <span className="template-id-tag">APP ID: <strong>{appId}</strong></span>
+          </div>
+
+          <div className="template-info-box">
+            <div className="template-info-item">
+              <span className="info-lbl"><i className="bi bi-person-vcard" /> {t('EPIC No')}:</span>
               <span className="info-val">{v.epic_no || appData?.epic || '—'}</span>
             </div>
 
-            <div className="card-info-row">
-              <span className="info-key"><i className="bi bi-geo-alt" /> Assembly / Dist</span>
+            <div className="template-info-item">
+              <span className="info-lbl"><i className="bi bi-geo-alt" /> {t('Assembly')}:</span>
               <span className="info-val">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
             </div>
 
             {locationStr && (
-              <div className="card-info-row">
-                <span className="info-key"><i className="bi bi-building" /> Local Body</span>
+              <div className="template-info-item">
+                <span className="info-lbl"><i className="bi bi-building" /> {t('Local Body')}:</span>
                 <span className="info-val">{locationStr}</span>
               </div>
             )}
 
             {membershipId && (
-              <div className="card-info-row">
-                <span className="info-key"><i className="bi bi-card-heading" /> Membership No</span>
-                <span className="info-val highlight-orange">{membershipId}</span>
+              <div className="template-info-item">
+                <span className="info-lbl"><i className="bi bi-card-heading" /> {t('Membership')}:</span>
+                <span className="info-val highlight">{membershipId}</span>
               </div>
             )}
           </div>
-        </div>
 
-        {/* Digital Verification & Stamp */}
-        <div className="candidate-qr-verification">
-          <div className="qr-box">
-            {/* Clean SVG QR pattern */}
-            <svg viewBox="0 0 100 100" className="qr-svg" width="44" height="44">
-              <rect width="100" height="100" fill="#ffffff" />
-              {/* Corner 1 */}
-              <rect x="6" y="6" width="26" height="26" fill="#0f172a" rx="3" />
-              <rect x="11" y="11" width="16" height="16" fill="#ffffff" rx="1" />
-              <rect x="15" y="15" width="8" height="8" fill="#c2410c" rx="1" />
-              {/* Corner 2 */}
-              <rect x="68" y="6" width="26" height="26" fill="#0f172a" rx="3" />
-              <rect x="73" y="11" width="16" height="16" fill="#ffffff" rx="1" />
-              <rect x="77" y="15" width="8" height="8" fill="#c2410c" rx="1" />
-              {/* Corner 3 */}
-              <rect x="6" y="68" width="26" height="26" fill="#0f172a" rx="3" />
-              <rect x="11" y="73" width="16" height="16" fill="#ffffff" rx="1" />
-              <rect x="15" y="77" width="8" height="8" fill="#c2410c" rx="1" />
-              {/* Data points */}
-              <rect x="38" y="8" width="6" height="6" fill="#0f172a" />
-              <rect x="50" y="8" width="8" height="6" fill="#0f172a" />
-              <rect x="38" y="20" width="8" height="6" fill="#0f172a" />
-              <rect x="50" y="20" width="6" height="6" fill="#0f172a" />
-              <rect x="10" y="38" width="8" height="8" fill="#0f172a" />
-              <rect x="24" y="38" width="6" height="6" fill="#0f172a" />
-              <rect x="38" y="38" width="10" height="10" fill="#c2410c" rx="2" />
-              <rect x="54" y="38" width="8" height="6" fill="#0f172a" />
-              <rect x="70" y="38" width="8" height="8" fill="#0f172a" />
-              <rect x="84" y="38" width="6" height="6" fill="#0f172a" />
-              <rect x="38" y="54" width="6" height="8" fill="#0f172a" />
-              <rect x="50" y="54" width="8" height="8" fill="#0f172a" />
-              <rect x="68" y="54" width="6" height="6" fill="#0f172a" />
-              <rect x="80" y="54" width="10" height="8" fill="#0f172a" />
-              <rect x="38" y="68" width="8" height="8" fill="#0f172a" />
-              <rect x="52" y="68" width="6" height="6" fill="#0f172a" />
-              <rect x="68" y="68" width="12" height="10" fill="#0f172a" />
-              <rect x="86" y="68" width="6" height="8" fill="#0f172a" />
-              <rect x="38" y="82" width="6" height="10" fill="#0f172a" />
-              <rect x="50" y="82" width="8" height="8" fill="#0f172a" />
-              <rect x="68" y="84" width="10" height="6" fill="#0f172a" />
-              <rect x="84" y="82" width="8" height="8" fill="#0f172a" />
-            </svg>
-          </div>
-          <div className="qr-info-meta">
-            <div className="qr-title">DIGITAL NOMINATION PASS</div>
-            <div className="qr-sub">Scan to verify credentials online</div>
-            <div className="qr-sec-hash">HASH: {appId.slice(-6)} · SECURE</div>
-          </div>
-        </div>
-
-        {/* Footer with Security & Timestamp */}
-        <div className="candidate-card-footer">
-          <div className="footer-meta">
-            <span className="submit-time">{fmtDateTime(result?.submitted_at)}</span>
-            <span className="security-code">STATE ELECTION COMMITTEE · TN</span>
-          </div>
-          <div className="card-seal-icon">
-            <i className="bi bi-shield-fill-check" />
+          <div className="template-card-footer">
+            <div className="template-security-text">
+              <i className="bi bi-shield-fill-check" /> SECURED DIGITAL NOMINATION · 2026
+            </div>
+            <div className="template-timestamp">
+              {fmtDateTime(result?.submitted_at)}
+            </div>
           </div>
         </div>
       </div>
 
-      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ maxWidth: 330, width: '100%', marginTop: 12 }}>
-        <i className="bi bi-download" /> {downloading ? 'Generating 9:16 Card...' : t('Download Candidate Card (9:16)')}
+      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ maxWidth: 380, width: '100%', marginTop: 12 }}>
+        <i className="bi bi-download" /> {downloading ? 'Generating Official Card...' : t('Download Official Candidate Card')}
       </button>
     </div>
   )

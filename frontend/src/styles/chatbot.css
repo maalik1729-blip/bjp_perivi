@@ -506,213 +506,151 @@
   margin-bottom: 10px;
 }
 
-/* ── 9:16 Portrait Candidate ID Card (Light Theme) ───────────── */
-/* ── Candidate 9:16 Digital ID Card (Clean Light Theme) ───── */
-.candidate-card-box.ratio-9-16 {
+/* ── Official BJP Template ID Card ───────────────────────── */
+.candidate-template-card {
   width: 100%;
-  max-width: 340px;
-  aspect-ratio: 9 / 16;
-  background: #ffffff;
-  border: 1.5px solid #fed7aa;
-  border-radius: 20px;
-  padding: 14px 14px 12px 14px;
-  color: #0f172a;
-  box-shadow: 0 14px 32px -4px rgba(249, 115, 22, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
   position: relative;
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 16px 40px -8px rgba(234, 88, 12, 0.35), 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-image: url('/id_card_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-sizing: border-box;
   font-family: inherit;
 }
 
-.candidate-card-box.ratio-9-16 .card-tricolor-bar {
+.candidate-template-card .template-photo-slot {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #ff9933 0%, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%, #138808 100%);
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 4px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #ffedd5;
-}
-
-.candidate-card-box.ratio-9-16 .card-party-logo {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-}
-
-.candidate-card-box.ratio-9-16 .card-org-name {
-  font-size: 11.5px;
-  font-weight: 900;
-  letter-spacing: 0.6px;
-  color: #c2410c;
-  line-height: 1.15;
-}
-
-.candidate-card-box.ratio-9-16 .card-state-name {
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  color: #64748b;
-  margin-top: 1px;
-}
-
-.candidate-card-box.ratio-9-16 .card-election-tag {
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-  border-radius: 6px;
-  padding: 3px 8px;
-  text-align: center;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  color: #c2410c;
-  margin-top: 5px;
-  margin-bottom: 4px;
-}
-
-.candidate-card-box.ratio-9-16 .card-photo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin: 2px 0;
-}
-
-.candidate-card-box.ratio-9-16 .card-photo-frame {
-  width: 86px;
-  height: 86px;
-  border-radius: 18px;
-  border: 2px solid #ffedd5;
-  outline: 2px solid #ea580c;
-  outline-offset: 1px;
-  background: #fff8f1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 7.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 37.6%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.15);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-photo {
+.candidate-template-card .template-candidate-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-avatar-placeholder {
+.candidate-template-card .template-avatar-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #fff7ed, #fed7aa);
-  color: #c2410c;
-  font-size: 42px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  color: #ea580c;
+  font-size: 52px;
 }
 
-.candidate-card-box.ratio-9-16 .card-badge-verified {
-  margin-top: -8px;
-  z-index: 2;
+.candidate-template-card .template-content-area {
+  position: absolute;
+  top: 47%;
+  left: 5%;
+  right: 5%;
+  bottom: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  z-index: 3;
+}
+
+.candidate-template-card .template-verified-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   background: #ecfdf5;
   color: #047857;
   border: 1px solid #a7f3d0;
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 800;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(4, 120, 87, 0.12);
+  box-shadow: 0 2px 6px rgba(4, 120, 87, 0.15);
 }
 
-.candidate-card-box.ratio-9-16 .candidate-identity-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  margin: 2px 0;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-name {
-  font-size: 16px;
+.candidate-template-card .template-candidate-name {
+  font-size: 17px;
   font-weight: 900;
-  text-align: center;
   color: #0f172a;
-  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  margin-top: 1px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.candidate-card-box.ratio-9-16 .candidate-target-badge {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 2px 8px;
-  font-size: 10.5px;
-  font-weight: 800;
+.candidate-template-card .template-position-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
   color: #c2410c;
-  text-align: center;
-  max-width: 95%;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(194, 65, 12, 0.08);
+  max-width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-card-id-pill {
-  display: inline-flex;
+.candidate-template-card .template-id-row {
+  display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+}
+
+.candidate-template-card .template-id-tag {
   font-size: 10px;
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-  padding: 1.5px 7px;
-  border-radius: 4px;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-id-pill .id-label {
-  color: #7c2d12;
-  font-weight: 700;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-id-pill .id-value {
-  color: #ea580c;
-  font-family: monospace;
-  font-weight: 900;
-  letter-spacing: 0.4px;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-details {
-  display: flex;
-  flex-direction: column;
-  margin: 3px 0;
-}
-
-.candidate-card-box.ratio-9-16 .card-info-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: #f8fafc;
-  border-radius: 10px;
-  padding: 8px 10px;
+  color: #475569;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5px 8px;
+  border-radius: 6px;
   border: 1px solid #e2e8f0;
 }
 
-.candidate-card-box.ratio-9-16 .card-info-row {
+.candidate-template-card .template-id-tag strong {
+  color: #ea580c;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.candidate-template-card .template-info-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(254, 215, 170, 0.9);
+  border-radius: 12px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.candidate-template-card .template-info-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -720,7 +658,7 @@
   gap: 6px;
 }
 
-.candidate-card-box.ratio-9-16 .info-key {
+.candidate-template-card .info-lbl {
   color: #64748b;
   font-weight: 600;
   display: flex;
@@ -729,7 +667,7 @@
   flex-shrink: 0;
 }
 
-.candidate-card-box.ratio-9-16 .info-val {
+.candidate-template-card .info-val {
   color: #0f172a;
   font-weight: 700;
   text-align: right;
@@ -738,98 +676,34 @@
   text-overflow: ellipsis;
 }
 
-.candidate-card-box.ratio-9-16 .info-val.highlight-orange {
+.candidate-template-card .info-val.highlight {
   color: #ea580c;
   font-weight: 800;
 }
 
-.candidate-card-box.ratio-9-16 .candidate-qr-verification {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #ffffff;
-  border: 1px solid #fed7aa;
-  border-radius: 10px;
-  padding: 6px 8px;
-  margin: 3px 0;
-}
-
-.candidate-card-box.ratio-9-16 .qr-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-}
-
-.candidate-card-box.ratio-9-16 .qr-info-meta {
+.candidate-template-card .template-card-footer {
   display: flex;
   flex-direction: column;
-  gap: 1.5px;
-}
-
-.candidate-card-box.ratio-9-16 .qr-title {
-  font-size: 9.5px;
-  font-weight: 900;
-  color: #0f172a;
-  letter-spacing: 0.3px;
-}
-
-.candidate-card-box.ratio-9-16 .qr-sub {
-  font-size: 8px;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.candidate-card-box.ratio-9-16 .qr-sec-hash {
-  font-size: 7.5px;
-  font-weight: 800;
-  color: #047857;
-  letter-spacing: 0.4px;
-  font-family: monospace;
-}
-
-.candidate-card-box.ratio-9-16 .candidate-card-footer {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid #f1f5f9;
-  padding-top: 5px;
-  margin-top: 2px;
-}
-
-.candidate-card-box.ratio-9-16 .footer-meta {
-  display: flex;
-  flex-direction: column;
   gap: 1px;
 }
 
-.candidate-card-box.ratio-9-16 .submit-time {
-  font-size: 8.5px;
-  color: #94a3b8;
-  font-weight: 600;
-}
-
-.candidate-card-box.ratio-9-16 .security-code {
+.candidate-template-card .template-security-text {
   font-size: 8px;
   font-weight: 800;
-  letter-spacing: 0.5px;
-  color: #047857;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.candidate-card-box.ratio-9-16 .card-seal-icon {
-  color: #ea580c;
-  font-size: 15px;
-}
-
-.candidate-card-box.ratio-9-16 .card-seal-icon {
-  color: #ea580c;
-  font-size: 16px;
+.candidate-template-card .template-timestamp {
+  font-size: 7.5px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .download-card-btn {
