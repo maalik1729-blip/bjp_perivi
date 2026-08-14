@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://bjp-backend.onrender.com/api/:path*"
+      "destination": "https://bjp-perivi.onrender.com/api/:path*"
     },
     {
       "source": "/admin/api/:path*",
-      "destination": "https://bjp-backend.onrender.com/admin/api/:path*"
+      "destination": "https://bjp-perivi.onrender.com/admin/api/:path*"
     },
     {
       "source": "/(.*)",
