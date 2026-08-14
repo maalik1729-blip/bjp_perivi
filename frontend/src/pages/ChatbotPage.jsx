@@ -731,50 +731,61 @@ function CandidateCardMsg({ result, appData }) {
           )}
         </div>
 
-        {/* Content Section positioned over the bright center of the template */}
-        <div className="template-content-area">
-          <div className="template-candidate-name">{displayName}</div>
-
-          {primaryPos && (
-            <div className="template-position-pill">
-              <i className="bi bi-award-fill" /> {primaryPos}
-            </div>
-          )}
-
-          <div className="template-app-badge">
-            <span className="app-id-label">APP ID:</span>
-            <span className="app-id-code">{appId}</span>
-            <span className="app-verified-tag"><i className="bi bi-patch-check-fill" /> {t('Verified')}</span>
+        {/* Unified Official Nomination Pass Panel */}
+        <div className="template-unified-panel">
+          {/* Header: Name & Target Role */}
+          <div className="panel-header">
+            <div className="panel-candidate-name">{displayName}</div>
+            {primaryPos && (
+              <div className="panel-candidate-role">
+                <i className="bi bi-award-fill" /> {primaryPos}
+              </div>
+            )}
           </div>
 
-          <div className="template-info-box">
-            <div className="template-info-item">
-              <span className="info-lbl"><i className="bi bi-person-vcard" /> {t('EPIC No')}</span>
-              <span className="info-val">{v.epic_no || appData?.epic || '—'}</span>
+          {/* Meta Bar: App ID & Verified Badge */}
+          <div className="panel-meta-bar">
+            <span className="panel-app-id">ID: <strong>{appId}</strong></span>
+            <span className="panel-verified-tag">
+              <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
+            </span>
+          </div>
+
+          {/* Structured Key Details Table (no truncation) */}
+          <div className="panel-details-table">
+            <div className="panel-row">
+              <span className="row-label"><i className="bi bi-person-vcard" /> {t('EPIC / Voter ID')}</span>
+              <span className="row-value">{v.epic_no || appData?.epic || '—'}</span>
             </div>
 
-            <div className="template-info-item">
-              <span className="info-lbl"><i className="bi bi-geo-alt" /> {t('Assembly / Dist')}</span>
-              <span className="info-val">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
+            <div className="panel-row">
+              <span className="row-label"><i className="bi bi-geo-alt" /> {t('Assembly / Dist')}</span>
+              <span className="row-value">{[v.assembly_name || v.assembly_no, v.district].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
             </div>
 
             {locationStr && (
-              <div className="template-info-item">
-                <span className="info-lbl"><i className="bi bi-building" /> {t('Local Body')}</span>
-                <span className="info-val">{locationStr}</span>
+              <div className="panel-row">
+                <span className="row-label"><i className="bi bi-building" /> {t('Local Body & Ward')}</span>
+                <span className="row-value">{locationStr}</span>
               </div>
             )}
 
             {membershipId && (
-              <div className="template-info-item">
-                <span className="info-lbl"><i className="bi bi-card-heading" /> {t('Membership No')}</span>
-                <span className="info-val highlight">{membershipId}</span>
+              <div className="panel-row">
+                <span className="row-label"><i className="bi bi-card-heading" /> {t('Membership No')}</span>
+                <span className="row-value highlight-orange">{membershipId}</span>
               </div>
             )}
           </div>
 
-          <div className="template-security-badge">
-            <i className="bi bi-shield-lock-fill" /> SECURED DIGITAL RECORD · BJP TN 2026
+          {/* Official Security Stamp Footer */}
+          <div className="panel-footer">
+            <span className="panel-security-label">
+              <i className="bi bi-shield-fill-check" /> SECURED DIGITAL RECORD · BJP TN 2026
+            </span>
+            <span className="panel-timestamp">
+              {fmtDateTime(result?.submitted_at)}
+            </span>
           </div>
         </div>
       </div>
