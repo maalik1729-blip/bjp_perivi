@@ -568,7 +568,7 @@ function CandidateCardMsg({ result, appData }) {
     if (!cardRef.current) return
     setDownloading(true)
     try {
-      const canvas = await html2canvas(cardRef.current, { scale: 2, useCORS: true, backgroundColor: '#0f172a' })
+      const canvas = await html2canvas(cardRef.current, { scale: 3, useCORS: true, backgroundColor: '#0f172a' })
       const image = canvas.toDataURL('image/png')
       const link = document.createElement('a')
       link.href = image
@@ -582,40 +582,93 @@ function CandidateCardMsg({ result, appData }) {
   }
 
   const locationStr = appData?.bodyType === 'urban'
-    ? [lb.urbanType, lb.urbanBody, lb.urbanWard].filter(Boolean).join(' - ')
-    : [lb.ruralUnion, lb.ruralPanchayat, lb.ruralWard].filter(Boolean).join(' - ')
+    ? [lb.urbanType, lb.urbanBody, lb.urbanWard && `Ward ${lb.urbanWard}`].filter(Boolean).join(' · ')
+    : [lb.ruralUnion, lb.ruralPanchayat, lb.ruralWard && `Ward ${lb.ruralWard}`].filter(Boolean).join(' · ')
+
+  const positionsStr = Array.isArray(appData?.positionPrefs) ? appData.positionPrefs.filter(Boolean).join(' / ') : ''
 
   return (
-    <div style={{ width: '100%' }}>
-      <div ref={cardRef} className="candidate-card-box">
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div ref={cardRef} className="candidate-card-box ratio-9-16">
+        {/* Top Tricolor Ribbon */}
+        <div className="card-tricolor-bar" />
+
+        {/* Top Header */}
         <div className="candidate-card-header">
-          <div className="candidate-card-title"><i className="bi bi-award-fill" /> {t('Candidate Application Card')}</div>
-          <img src="/bjp_logo.svg" alt="BJP" style={{ width: 28, height: 28 }} onError={(e) => { e.target.src = '/bjp_logo.png' }} />
+          <img src="/bjp_logo.svg" alt="BJP" className="card-party-logo" onError={(e) => { e.target.src = '/bjp_logo.png' }} />
+          <div className="card-header-text">
+            <div className="card-org-name">BHARATIYA JANATA PARTY</div>
+            <div className="card-state-name">TAMIL NADU</div>
+          </div>
         </div>
-        <div className="candidate-card-body">
+
+        <div className="card-election-tag">
+          <span>LOCAL BODY ELECTIONS 2026</span>
+        </div>
+
+        {/* Central Candidate Portrait */}
+        <div className="card-photo-container">
           <img
             src={appData?.photoUrl || '/bjp_logo.svg'}
             alt="Candidate Photo"
             className="candidate-card-photo"
             onError={(e) => { e.target.src = '/bjp_logo.png' }}
           />
-          <div className="candidate-card-info">
-            <div className="candidate-card-name">{v.name || 'Verified Applicant'}</div>
-            <div className="candidate-card-id">ID: {result?.application_id}</div>
-            <div style={{ fontSize: 12, color: '#cbd5e1', marginTop: 4 }}>
-              <i className="bi bi-geo-alt-fill" style={{ color: '#ff9933', marginRight: 4 }} />
-              {locationStr || v.district || 'Tamil Nadu'}
-            </div>
-            <div style={{ fontSize: 11, color: '#94a3b8' }}>EPIC: {v.epic_no || appData?.epic}</div>
+          <div className="card-badge-verified">
+            <i className="bi bi-patch-check-fill" /> {t('Verified Applicant')}
           </div>
         </div>
+
+        {/* Candidate Information Details */}
+        <div className="candidate-card-details">
+          <div className="candidate-card-name">{v.name || 'Verified Applicant'}</div>
+
+          <div className="candidate-card-id-badge">
+            <span className="id-label">APP ID:</span>
+            <span className="id-value">{result?.application_id || 'BJP-2026'}</span>
+          </div>
+
+          <div className="card-info-grid">
+            <div className="card-info-row">
+              <span className="info-key">EPIC / Voter ID</span>
+              <span className="info-val">{v.epic_no || appData?.epic || '—'}</span>
+            </div>
+
+            <div className="card-info-row">
+              <span className="info-key">District / Assembly</span>
+              <span className="info-val">{[v.district, v.assembly_name].filter(Boolean).join(' · ') || 'Tamil Nadu'}</span>
+            </div>
+
+            {locationStr && (
+              <div className="card-info-row">
+                <span className="info-key">Local Body</span>
+                <span className="info-val">{locationStr}</span>
+              </div>
+            )}
+
+            {positionsStr && (
+              <div className="card-info-row">
+                <span className="info-key">Target Position</span>
+                <span className="info-val highlight">{positionsStr}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Footer with Security & Timestamp */}
         <div className="candidate-card-footer">
-          <span style={{ fontSize: 11, color: '#94a3b8' }}>Submitted: {fmtDateTime(result?.submitted_at)}</span>
-          <span style={{ fontSize: 11, color: '#4ade80', fontWeight: 600 }}><i className="bi bi-check-circle-fill" /> Verified</span>
+          <div className="footer-meta">
+            <span className="submit-time">{fmtDateTime(result?.submitted_at)}</span>
+            <span className="security-code">SECURED DIGITAL RECORD</span>
+          </div>
+          <div className="card-seal-icon">
+            <i className="bi bi-shield-lock-fill" />
+          </div>
         </div>
       </div>
-      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ width: '100%', marginTop: 8 }}>
-        <i className="bi bi-download" /> {downloading ? 'Generating Image...' : t('Download Candidate Card')}
+
+      <button type="button" className="download-card-btn" onClick={handleDownload} disabled={downloading} style={{ maxWidth: 320, width: '100%', marginTop: 10 }}>
+        <i className="bi bi-download" /> {downloading ? 'Generating 9:16 Card...' : t('Download Candidate Card (9:16)')}
       </button>
     </div>
   )
@@ -992,49 +1045,11 @@ export default function ChatbotPage() {
     if (initializedRef.current) return
     initializedRef.current = true
 
-    // Restore a previous session (so a refresh doesn't reset to the Start screen).
-    const saved = loadSession()
-    if (saved && Array.isArray(saved.messages) && saved.messages.length && saved.chatState && saved.chatState !== S.WELCOME) {
-      // A refresh mid-submit should land back on the review step, not a spinner.
-      let cs = saved.chatState === S.SUBMITTING ? S.REVIEW : saved.chatState
-      if (cs === 'PROFILE_OPTIONAL' || cs === S.PROFILE_OPTIONAL) {
-        cs = S.LOCAL_AREA
-      }
-      setAppData(saved.appData || emptyAppData())
-      mobileRef.current = saved.mobile || ''
-
-      if (cs === S.SUBMITTED) {
-        // After submission, show a rich "Welcome back" card with person's name + the submitted card.
-        const submittedMsg = saved.messages.find((m) => m.type === 'submitted')
-        const voterName = saved.appData?.voter?.name || saved.appData?.voter?.voter_name || ''
-        const rebuilt = [{
-          id: `wb-${Date.now()}`, from: 'bot', type: 'welcome_back_banner',
-          name: voterName,
-          subtitle: 'Here is your submitted application for the BJP Tamil Nadu Local Body Elections 2026.',
-          ts: new Date(),
-        }]
-        if (submittedMsg) rebuilt.push({ ...submittedMsg, ts: submittedMsg.ts ? new Date(submittedMsg.ts) : new Date() })
-        setMessages(rebuilt)
-        setChatState(S.SUBMITTED)
-        return
-      }
-
-      let restoredMsgs = saved.messages.map((m) => ({ ...m, ts: m.ts ? new Date(m.ts) : new Date() }))
-      // Migration: if session was on profile_optional, append local_area prompt if missing
-      if (cs === S.LOCAL_AREA && !restoredMsgs.some((m) => m.type === 'local_area')) {
-        restoredMsgs.push({
-          id: `migration-${Date.now()}`,
-          from: 'bot',
-          type: 'local_area',
-          ts: new Date(),
-        })
-      }
-      setMessages(restoredMsgs)
-      setChatState(cs)
-      return
-    }
-
-    addMsg('bot', 'welcome_banner', {})
+    // Always start clean at the Welcome Banner on page refresh.
+    clearSession()
+    mobileRef.current = ''
+    setAppData(emptyAppData())
+    setMessages([{ id: `msg-${Date.now()}`, from: 'bot', type: 'welcome_banner', ts: new Date() }])
     setChatState(S.WELCOME)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -1621,15 +1636,6 @@ export default function ChatbotPage() {
                 aria-pressed={lang === 'ta'}
               >
                 தமிழ்
-              </button>
-              <button
-                type="button"
-                className="lang-toggle-btn"
-                onClick={handleRestart}
-                title={t('Reset / Start New Application')}
-                style={{ marginLeft: 6, display: 'flex', alignItems: 'center', gap: 4, background: 'rgba(231,76,60,0.15)', color: '#ff6b6b', border: '1px solid rgba(231,76,60,0.3)', cursor: 'pointer' }}
-              >
-                <i className="bi bi-arrow-counterclockwise" /> {t('Reset')}
               </button>
             </div>
 
