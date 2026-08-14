@@ -753,10 +753,13 @@ function CandidateCardMsg({ result, appData }) {
 
         {/* Top Header */}
         <div className="candidate-card-header">
-          <BjpLotusLogo size={36} className="card-party-logo" />
+          <BjpLotusLogo size={34} className="card-party-logo" />
           <div className="card-header-text">
             <div className="card-org-name">BHARATIYA JANATA PARTY</div>
             <div className="card-state-name">TAMIL NADU STATE UNIT</div>
+          </div>
+          <div className="card-leader-avatar">
+            <img src="/pm_modi.png" alt="PM Narendra Modi" className="card-leader-img" />
           </div>
         </div>
 
